@@ -11,6 +11,13 @@
       <button @click="queryWeather" :disabled="loading">
         {{ loading ? '查询中...' : '查询' }}
       </button>
+      <button
+        @click="clearSearch"
+        :disabled="loading || !city.trim()"
+        class="clear-btn"
+      >
+        清空
+      </button>
     </div>
 
     <div v-if="currentWeather" class="result-box">
@@ -81,6 +88,11 @@ const loadHistory = async () => {
   } catch (error) {
     console.error('加载历史记录失败:', error)
   }
+}
+
+const clearSearch = () => {
+  city.value = ''
+  currentWeather.value = null
 }
 
 const formatTime = (timeStr) => {
@@ -186,6 +198,14 @@ button:disabled {
   background: #2196F3;
   padding: 6px 12px;
   font-size: 14px;
+}
+
+.clear-btn {
+  background: #9e9e9e;
+}
+
+.clear-btn:hover:not(:disabled) {
+  background: #757575;
 }
 
 table {

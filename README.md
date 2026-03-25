@@ -8,13 +8,20 @@
 ## 快速启动
 
 ```bash
-# 1. 进入项目目录
-cd weather-mvp
+# 1. 克隆项目
+git clone https://jihulab.com/austinxia-group/weatherapp.git
 
-# 2. 启动所有服务
-docker-compose up --build
+# 2. 进入项目目录
+cd weatherapp
 
-# 3. 等待启动完成（看到 "Started WeatherApplication" 和 "VITE ready"）
+# 3. 启动所有服务
+# 第一次启动（会拉镜像/构建）：docker build 一次即可
+docker compose up --build
+
+# 之后仅启动（代码没改时就够了）：docker compose up
+# docker compose up
+
+# 4. 等待启动完成（看到 "Started WeatherApplication" 和 "VITE ready"）
 ```
 
 ## 访问地址
@@ -26,9 +33,3 @@ docker-compose up --build
 1. 在输入框输入城市名（如 Beijing, London, Tokyo）
 2. 点击"查询"，显示实时天气（调用 wttr.in 免费 API）
 3. 查询记录自动保存到 MySQL，下方表格显示历史记录
-
-## 教学要点
-- `docker-compose up` 一键启动多容器
-- MySQL 通过 `init-scripts/init.sql` 自动建表
-- 前端热重载：修改 Vue 代码自动刷新
-- 数据持久化：MySQL 数据保存在 volume 中
